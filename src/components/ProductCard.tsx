@@ -12,6 +12,8 @@ export default function ProductCard({
   discount,
   colors,
   selected,
+  selectedCameras,
+  setSelectedCameras,
 }: ProductCardProps) {
   const [count, setCount] = useState(0);
   return (
@@ -59,7 +61,17 @@ export default function ProductCard({
         <div className="flex flex-row w-full justify-between items-center">
           <div className="flex flex-row items-center">
             <button
-              onClick={() => count > 0 && setCount((prev) => prev - 1)}
+              onClick={() => {
+                setCount((prev) => {
+                  const next = prev - 1;
+                  if (next === 0) {
+                    setSelectedCameras((selected) =>
+                      selected.filter((selectedId) => selectedId !== id),
+                    );
+                  }
+                  return Math.max(0, next);
+                });
+              }}
               disabled={count === 0}
               className={`w-5 h-5 flex items-center justify-center leading-5 font-bold
                 ${
@@ -74,7 +86,16 @@ export default function ProductCard({
             <p className="w-10 text-center text-lg font-semibold">{count}</p>
 
             <button
-              onClick={() => setCount((prev) => prev + 1)}
+              onClick={() => {
+                setCount((prev) => {
+                  if (prev === 0) {
+                    setSelectedCameras((prev) =>
+                      prev.includes(id) ? prev : [...prev, id],
+                    );
+                  }
+                  return prev + 1;
+                });
+              }}
               className="w-5 h-5 rounded-lg bg-[#F0F4F7] text-[#525963] flex items-center justify-center text-xl font-bold"
             >
               +

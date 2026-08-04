@@ -1,6 +1,6 @@
-import type { ProductCardProps } from "../utils/types";
+import type { ProductResponseType } from "../utils/types";
 
-export const cameraProducts: ProductCardProps[] = [
+export const cameraProducts: ProductResponseType[] = [
   {
     id: 1,
     image: "src\\assets\\Wyze_Cam_V4.png",

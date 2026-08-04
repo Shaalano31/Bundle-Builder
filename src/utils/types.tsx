@@ -1,9 +1,11 @@
+import type { Dispatch, SetStateAction } from "react";
+
 export interface IconProps {
   size?: number;
   color?: string;
 }
 
-export type ProductCardProps = {
+export type ProductResponseType = {
   id: number;
   image: string;
   name: string;
@@ -12,7 +14,12 @@ export type ProductCardProps = {
   link: string;
   discount?: number;
   colors?: ColorCardProps[];
-  selected?: boolean;
+};
+
+export type ProductCardProps = ProductResponseType & {
+  selected: boolean;
+  selectedCameras: number[];
+  setSelectedCameras: Dispatch<SetStateAction<number[]>>;
 };
 
 export type ColorCardProps = {

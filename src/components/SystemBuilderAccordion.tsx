@@ -66,22 +66,13 @@ export default function SystemBuilderAccordion() {
           {activeIndex === index && (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {step.products.map((product) => (
-                <div
+                <ProductCard
+                  {...product}
                   key={product.id}
-                  className="flex"
-                  onClick={() => {
-                    setSelectedCameras((prev) =>
-                      prev.includes(product.id)
-                        ? prev.filter((id) => id !== product.id)
-                        : [...prev, product.id],
-                    );
-                  }}
-                >
-                  <ProductCard
-                    {...product}
-                    selected={selectedCameras.includes(product.id)}
-                  />
-                </div>
+                  selected={selectedCameras.includes(product.id)}
+                  selectedCameras={selectedCameras}
+                  setSelectedCameras={setSelectedCameras}
+                />
               ))}
             </div>
           )}
