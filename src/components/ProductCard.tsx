@@ -62,23 +62,21 @@ export default function ProductCard({
             <button
               onClick={() => count > 0 && setCount((prev) => prev - 1)}
               disabled={count === 0}
-              className={`w-5 h-5 border y-300 active:scale-95 transition flex items-center justify-center text-xl font-bold rounded-sm
+              className={`w-5 h-5 flex items-center justify-center leading-5 font-bold
                 ${
                   count === 0
                     ? "text-[#CED6DE] border-[#E6EBF0] border-2"
-                    : "text-[#525963] border-0"
+                    : "text-[#525963] border-0 bg-[#F0F4F7]"
                 }`}
             >
               −
             </button>
 
-            <span className="w-10 text-center text-lg font-semibold">
-              {count}
-            </span>
+            <p className="w-10 text-center text-lg font-semibold">{count}</p>
 
             <button
               onClick={() => setCount((prev) => prev + 1)}
-              className="w-5 h-5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition flex items-center justify-center text-xl font-bold"
+              className="w-5 h-5 rounded-lg bg-[#F0F4F7] text-[#525963] flex items-center justify-center text-xl font-bold"
             >
               +
             </button>
