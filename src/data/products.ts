@@ -1,11 +1,25 @@
 export const cameraProducts = [
   {
     image: "src\\assets\\Wyze_Cam_V4.png",
-    name: "Outdoor Camera",
-    description: "1080p HD with night vision",
-    price: 99,
+    name: "Wyze Cam v4",
+    description: "The clearest Wyze Cam ever made.",
+    price: 35.98,
     link: "https://www.google.com",
     discount: 22,
+    colors: [
+      {
+        image: "src\\assets\\Wyze_Cam_V4.png",
+        name: "White",
+      },
+      {
+        image: "src\\assets\\Wyze_Cam_V4.png",
+        name: "Black",
+      },
+      {
+        image: "src\\assets\\Wyze_Cam_V4.png",
+        name: "Grey",
+      },
+    ],
   },
   {
     image: "src\\assets\\Wyze_Cam_V3.png",
