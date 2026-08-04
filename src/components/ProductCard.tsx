@@ -1,18 +1,9 @@
 import { useState } from "react";
 import ColorCard from "./ColorComponent";
-import type { ColorCardProps } from "./ColorComponent";
-
-type ProductCardProps = {
-  image: string;
-  name: string;
-  description: string;
-  price: number;
-  link: string;
-  discount?: number;
-  colors?: ColorCardProps[];
-};
+import type { ProductCardProps } from "../utils/types";
 
 export default function ProductCard({
+  id,
   image,
   name,
   description,
@@ -20,20 +11,24 @@ export default function ProductCard({
   link,
   discount,
   colors,
+  selected,
 }: ProductCardProps) {
   const [count, setCount] = useState(0);
   return (
-    <div className="flex flex-row items-center gap-2 bg-teal-200 p-3 rounded-[10px]">
-      <div className="relative overflow-hidden flex flex-col bg-green-500 h-full justify-center">
+    <div
+      className={`bg-white flex flex-row items-center gap-2 p-3 rounded-[10px]
+      ${selected ? "border-2 border-[#4E2FD2B2]" : ""}`}
+    >
+      <div className="relative overflow-hidden flex flex-col h-full justify-center">
         {discount && (
           <div className="absolute top-3 bg-[#4E2FD2] text-white font-semibold text-xs rounded-full px-1.5 py-0.5">
             Save {discount}%
           </div>
         )}
-        <img src={image} alt={name} className="h-[101px] bg-amber-950" />
+        <img src={image} alt={name} className="h-[101px]" />
       </div>
 
-      <div className="flex flex-col bg-yellow-200 items-start gap-2.5 w-full h-full justify-center">
+      <div className="flex flex-col items-start gap-2.5 w-full h-full justify-center">
         <h3 className="font-semibold text-[#1F1F1F]">{name}</h3>
         <p className="font-medium text-[#1F1F1FBF] text-xs text-start">
           {description}{" "}
@@ -47,17 +42,21 @@ export default function ProductCard({
           </a>
         </p>
 
-        <div className="bg-amber-200">
+        <div>
           {colors && colors.length > 0 && (
             <div className="flex gap-0.5">
               {colors.map((color) => (
-                <ColorCard image={color.image} name={color.name} />
+                <ColorCard
+                  key={color.name}
+                  image={color.image}
+                  name={color.name}
+                />
               ))}
             </div>
           )}
         </div>
 
-        <div className="flex flex-row bg-white w-full justify-between items-center">
+        <div className="flex flex-row w-full justify-between items-center">
           <div className="flex flex-row items-center">
             <button
               onClick={() => count > 0 && setCount((prev) => prev - 1)}

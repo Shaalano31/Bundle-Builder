@@ -1,7 +1,4 @@
-export type ColorCardProps = {
-  image: string;
-  name: string;
-};
+import type { ColorCardProps } from "../utils/types";
 
 export default function ColorCard({ image, name }: ColorCardProps) {
   return (

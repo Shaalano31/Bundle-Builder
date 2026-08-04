@@ -36,7 +36,8 @@ const steps = [
 
 export default function SystemBuilderAccordion() {
   const [activeIndex, setActiveIndex] = useState(0); // Step 1 expanded by default
-
+  const [selectedCameras, setSelectedCameras] = useState<number[]>([]);
+  console.log(selectedCameras);
   return (
     <div className="max-w-2xl mx-auto border rounded-lg overflow-hidden">
       {steps.map((step, index) => (
@@ -63,9 +64,24 @@ export default function SystemBuilderAccordion() {
           </button>
 
           {activeIndex === index && (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {step.products.map((product) => (
-                <ProductCard key={product.name} {...product} />
+                <div
+                  key={product.id}
+                  className="flex"
+                  onClick={() => {
+                    setSelectedCameras((prev) =>
+                      prev.includes(product.id)
+                        ? prev.filter((id) => id !== product.id)
+                        : [...prev, product.id],
+                    );
+                  }}
+                >
+                  <ProductCard
+                    {...product}
+                    selected={selectedCameras.includes(product.id)}
+                  />
+                </div>
               ))}
             </div>
           )}

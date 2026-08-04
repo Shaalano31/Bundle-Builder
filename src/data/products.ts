@@ -1,5 +1,8 @@
-export const cameraProducts = [
+import type { ProductCardProps } from "../utils/types";
+
+export const cameraProducts: ProductCardProps[] = [
   {
+    id: 1,
     image: "src\\assets\\Wyze_Cam_V4.png",
     name: "Wyze Cam v4",
     description: "The clearest Wyze Cam ever made.",
@@ -22,6 +25,7 @@ export const cameraProducts = [
     ],
   },
   {
+    id: 2,
     image: "src\\assets\\Wyze_Cam_V3.png",
     name: "Indoor Camera",
     description: "Motion detection included",
@@ -29,6 +33,7 @@ export const cameraProducts = [
     link: "google.com",
   },
   {
+    id: 3,
     image: "src\\assets\\Wyze_Cam_V3.png",
     name: "Indoor Camera",
     description: "Motion detection included",
