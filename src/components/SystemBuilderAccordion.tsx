@@ -10,6 +10,8 @@ import CameraIcon from "../assets/icons/camera.icon";
 import SensorIcon from "../assets/icons/sensor.icon";
 import ProtectionIcon from "../assets/icons/protection.icon";
 import PlanIcon from "../assets/icons/plan.icon";
+import ArrowUpIcon from "../assets/icons/arrowup.icon";
+import ArrowDownIcon from "../assets/icons/arrowdown.icon";
 
 const steps = [
   {
@@ -51,13 +53,19 @@ export default function SystemBuilderAccordion() {
                 Step {index + 1} of {steps.length}
               </p>
               <div className="flex-1 h-px w-full bg-gray-300" />
-              <div className="flex flex-row bg-white justify-between">
+              <div className="flex flex-row justify-between">
                 <div className="flex flex-row items-center">
                   {step.icon}
                   <p>{step.title}</p>
                 </div>
                 <div className="text-end">
-                  <p>{activeIndex === index ? "−" : "+"}</p>
+                  <p>
+                    {activeIndex === index ? (
+                      <ArrowUpIcon />
+                    ) : (
+                      <ArrowDownIcon />
+                    )}
+                  </p>
                 </div>
               </div>
             </div>
