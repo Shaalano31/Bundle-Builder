@@ -40,3 +40,40 @@
 .read-the-docs {
   color: #888;
 }
+
+.product-card {
+  background: white;
+  color: black;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  /* Optional */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.product-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-info h3,
+.product-info p {
+  margin: 0;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
