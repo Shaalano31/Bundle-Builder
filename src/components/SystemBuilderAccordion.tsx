@@ -101,15 +101,29 @@ export default function SystemBuilderAccordion() {
 
             {activeIndex === index && (
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {step.products.map((product) => (
-                  <ProductCard
-                    {...product}
-                    key={product.id}
-                    selected={selected.includes(product.id)}
-                    selectedProducts={selected}
-                    setSelectedProducts={setSelected}
-                  />
-                ))}
+                {step.products.map((product, productIndex) => {
+                  const isLast = productIndex === step.products.length - 1;
+                  const isOdd = step.products.length % 2 !== 0;
+
+                  return (
+                    <div
+                      key={product.id}
+                      className={
+                        isOdd && isLast
+                          ? "sm:col-span-2 flex justify-center"
+                          : ""
+                      }
+                    >
+                      <ProductCard
+                        {...product}
+                        key={product.id}
+                        selected={selected.includes(product.id)}
+                        selectedProducts={selected}
+                        setSelectedProducts={setSelected}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>

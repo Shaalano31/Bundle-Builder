@@ -23,12 +23,12 @@ export default function ProductCard({
 
   return (
     <div
-      className={`bg-white flex flex-row items-center gap-2 p-3 rounded-[10px]
+      className={`bg-white flex flex-row items-center gap-2 p-3 rounded-[10px] h-full
       ${selected ? "border-2 border-[#4E2FD2B2]" : ""}`}
     >
       <div className="relative overflow-hidden flex flex-col h-full justify-center">
         {discount && (
-          <div className="absolute top-3 bg-[#4E2FD2] text-white font-semibold text-xs rounded-full px-1.5 py-0.5">
+          <div className="absolute top-7 bg-[#4E2FD2] text-white font-semibold text-xs rounded-full px-1.5 py-0.5">
             Save {discount}%
           </div>
         )}
