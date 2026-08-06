@@ -18,13 +18,13 @@ export type ProductResponseType = {
 
 export type ProductCardProps = ProductResponseType & {
   selected: boolean;
-  selectedCameras: number[];
-  setSelectedCameras: Dispatch<SetStateAction<number[]>>;
+  selectedProducts: number[];
+  setSelectedProducts: Dispatch<SetStateAction<number[]>>;
 };
 
 export type ColorCardProps = {
   image: string;
   name: string;
-  selected: boolean;
-  onClick: () => void;
+  selected?: boolean;
+  onClick?: () => void;
 };

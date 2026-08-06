@@ -39,53 +39,82 @@ const steps = [
 export default function SystemBuilderAccordion() {
   const [activeIndex, setActiveIndex] = useState(0); // Step 1 expanded by default
   const [selectedCameras, setSelectedCameras] = useState<number[]>([]);
-  console.log(selectedCameras);
+  const [selectedPlans, setSelectedPlans] = useState<number[]>([]);
+  const [selectedSensors, setSelectedSensors] = useState<number[]>([]);
+  const [selectedProtections, setSelectedProtections] = useState<number[]>([]);
+
+  const accordion = [
+    {
+      selected: selectedCameras,
+      setSelected: setSelectedCameras,
+    },
+    {
+      selected: selectedPlans,
+      setSelected: setSelectedPlans,
+    },
+    {
+      selected: selectedSensors,
+      setSelected: setSelectedSensors,
+    },
+    {
+      selected: selectedProtections,
+      setSelected: setSelectedProtections,
+    },
+  ];
+  console.log(selectedCameras.length);
   return (
     <div className="max-w-2xl mx-auto border rounded-lg overflow-hidden">
-      {steps.map((step, index) => (
-        <div key={step.title} className="border-b last:border-b-0 bg-[#EDF4FF]">
-          <button
-            className="w-full flex items-start py-5 hover:bg-gray-50"
-            onClick={() => setActiveIndex(activeIndex === index ? -1 : index)}
+      {steps.map((step, index) => {
+        const { selected, setSelected } = accordion[index];
+        return (
+          <div
+            key={step.title}
+            className="border-b last:border-b-0 bg-[#EDF4FF]"
           >
-            <div className=" w-full">
-              <p className="pl-4 text-left text-[#484848] uppercase font-medium justify-start text-xs whitespace-nowrap">
-                Step {index + 1} of {steps.length}
-              </p>
-              <div className="flex-1 h-px w-full bg-gray-300" />
-              <div className="flex flex-row justify-between">
-                <div className="flex flex-row items-center">
-                  {step.icon}
-                  <p>{step.title}</p>
-                </div>
-                <div className="text-end">
-                  <p>
-                    {activeIndex === index ? (
-                      <ArrowUpIcon />
-                    ) : (
-                      <ArrowDownIcon />
-                    )}
-                  </p>
+            <button
+              className="w-full flex items-start py-5 hover:bg-gray-50"
+              onClick={() => setActiveIndex(activeIndex === index ? -1 : index)}
+            >
+              <div className=" w-full">
+                <p className="pl-4 text-left text-[#484848] uppercase font-medium justify-start text-xs whitespace-nowrap">
+                  Step {index + 1} of {steps.length}
+                </p>
+                <div className="flex-1 h-px w-full bg-gray-300" />
+                <div className="flex flex-row justify-between">
+                  <div className="flex flex-row items-center">
+                    {step.icon}
+                    <p>{step.title}</p>
+                  </div>
+                  <div className="flex flex-row text-end text-[#4E2FD2] items-center gap-1">
+                    {activeIndex === index && <p>{selected.length} selected</p>}
+                    <p>
+                      {activeIndex === index ? (
+                        <ArrowUpIcon />
+                      ) : (
+                        <ArrowDownIcon />
+                      )}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </button>
+            </button>
 
-          {activeIndex === index && (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {step.products.map((product) => (
-                <ProductCard
-                  {...product}
-                  key={product.id}
-                  selected={selectedCameras.includes(product.id)}
-                  selectedCameras={selectedCameras}
-                  setSelectedCameras={setSelectedCameras}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
+            {activeIndex === index && (
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {step.products.map((product) => (
+                  <ProductCard
+                    {...product}
+                    key={product.id}
+                    selected={selected.includes(product.id)}
+                    selectedProducts={selected}
+                    setSelectedProducts={setSelected}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

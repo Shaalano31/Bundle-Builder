@@ -47,7 +47,14 @@ export const planProducts = [
 ];
 
 export const sensorProducts = [
-  // ...
+  {
+    id: 1,
+    image: "src\\assets\\Wyze_Cam_V3.png",
+    name: "Indoor Camera",
+    description: "Motion detection included",
+    price: 79,
+    link: "google.com",
+  },
 ];
 
 export const protectionProducts = [

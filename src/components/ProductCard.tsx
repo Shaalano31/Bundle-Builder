@@ -12,8 +12,8 @@ export default function ProductCard({
   discount,
   colors,
   selected,
-  selectedCameras,
-  setSelectedCameras,
+  selectedProducts,
+  setSelectedProducts,
 }: ProductCardProps) {
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
 
@@ -24,7 +24,7 @@ export default function ProductCard({
   return (
     <div
       className={`bg-white flex flex-row items-center gap-2 p-3 rounded-[10px]
-      ${count.reduce((sum, count) => sum + count, 0) > 0 ? "border-2 border-[#4E2FD2B2]" : ""}`}
+      ${selected ? "border-2 border-[#4E2FD2B2]" : ""}`}
     >
       <div className="relative overflow-hidden flex flex-col h-full justify-center">
         {discount && (
@@ -75,8 +75,8 @@ export default function ProductCard({
                     0,
                     next[selectedColorIndex] - 1,
                   );
-                  if (next[selectedColorIndex] === 0) {
-                    setSelectedCameras((selected) =>
+                  if (next.reduce((sum, count) => sum + count, 0) === 0) {
+                    setSelectedProducts((selected) =>
                       selected.filter((selectedId) => selectedId !== id),
                     );
                   }
@@ -104,7 +104,7 @@ export default function ProductCard({
                   const next = [...prev];
                   next[selectedColorIndex]++;
                   if (prev[selectedColorIndex] === 0) {
-                    setSelectedCameras((prev) =>
+                    setSelectedProducts((prev) =>
                       prev.includes(id) ? prev : [...prev, id],
                     );
                   }
