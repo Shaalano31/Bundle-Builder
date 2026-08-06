@@ -15,11 +15,16 @@ export default function ProductCard({
   selectedCameras,
   setSelectedCameras,
 }: ProductCardProps) {
-  const [count, setCount] = useState(0);
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+
+  const [count, setCount] = useState(() =>
+    new Array(colors?.length ? colors.length : 1).fill(0),
+  );
+
   return (
     <div
       className={`bg-white flex flex-row items-center gap-2 p-3 rounded-[10px]
-      ${selected ? "border-2 border-[#4E2FD2B2]" : ""}`}
+      ${count.reduce((sum, count) => sum + count, 0) > 0 ? "border-2 border-[#4E2FD2B2]" : ""}`}
     >
       <div className="relative overflow-hidden flex flex-col h-full justify-center">
         {discount && (
@@ -47,11 +52,13 @@ export default function ProductCard({
         <div>
           {colors && colors.length > 0 && (
             <div className="flex gap-0.5">
-              {colors.map((color) => (
+              {colors.map((color, index) => (
                 <ColorCard
                   key={color.name}
                   image={color.image}
                   name={color.name}
+                  selected={selectedColorIndex === index}
+                  onClick={() => setSelectedColorIndex(index)}
                 />
               ))}
             </div>
@@ -63,19 +70,23 @@ export default function ProductCard({
             <button
               onClick={() => {
                 setCount((prev) => {
-                  const next = prev - 1;
-                  if (next === 0) {
+                  const next = [...prev];
+                  next[selectedColorIndex] = Math.max(
+                    0,
+                    next[selectedColorIndex] - 1,
+                  );
+                  if (next[selectedColorIndex] === 0) {
                     setSelectedCameras((selected) =>
                       selected.filter((selectedId) => selectedId !== id),
                     );
                   }
-                  return Math.max(0, next);
+                  return next;
                 });
               }}
-              disabled={count === 0}
+              disabled={count[selectedColorIndex] === 0}
               className={`w-5 h-5 flex items-center justify-center leading-5 font-bold
                 ${
-                  count === 0
+                  count[selectedColorIndex] === 0
                     ? "text-[#CED6DE] border-[#E6EBF0] border-2"
                     : "text-[#525963] border-0 bg-[#F0F4F7]"
                 }`}
@@ -83,17 +94,21 @@ export default function ProductCard({
               −
             </button>
 
-            <p className="w-10 text-center text-lg font-semibold">{count}</p>
+            <p className="w-10 text-center text-lg font-semibold">
+              {count[selectedColorIndex]}
+            </p>
 
             <button
               onClick={() => {
                 setCount((prev) => {
-                  if (prev === 0) {
+                  const next = [...prev];
+                  next[selectedColorIndex]++;
+                  if (prev[selectedColorIndex] === 0) {
                     setSelectedCameras((prev) =>
                       prev.includes(id) ? prev : [...prev, id],
                     );
                   }
-                  return prev + 1;
+                  return next;
                 });
               }}
               className="w-5 h-5 rounded-lg bg-[#F0F4F7] text-[#525963] flex items-center justify-center text-xl font-bold"

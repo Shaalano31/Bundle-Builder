@@ -25,4 +25,6 @@ export type ProductCardProps = ProductResponseType & {
 export type ColorCardProps = {
   image: string;
   name: string;
+  selected: boolean;
+  onClick: () => void;
 };
