@@ -1,11 +1,5 @@
 import { useState } from "react";
 import ProductCard from "./ProductCard";
-import {
-  cameraProducts,
-  planProducts,
-  sensorProducts,
-  protectionProducts,
-} from "../data/products";
 import CameraIcon from "../assets/icons/camera.icon";
 import SensorIcon from "../assets/icons/sensor.icon";
 import ProtectionIcon from "../assets/icons/protection.icon";
@@ -13,27 +7,28 @@ import PlanIcon from "../assets/icons/plan.icon";
 import ArrowUpIcon from "../assets/icons/arrowup.icon";
 import ArrowDownIcon from "../assets/icons/arrowdown.icon";
 import type { BuilderSelections } from "../utils/types";
+import { catalog } from "../data/product";
 
 const steps = [
   {
     icon: <CameraIcon />,
     title: "Choose your cameras",
-    products: cameraProducts,
+    products: catalog.cameras,
   },
   {
     icon: <PlanIcon />,
     title: "Choose your plan",
-    products: planProducts,
+    products: catalog.plans,
   },
   {
     icon: <SensorIcon />,
     title: "Choose your sensors",
-    products: sensorProducts,
+    products: catalog.sensors,
   },
   {
     icon: <ProtectionIcon />,
     title: "Add extra protection",
-    products: protectionProducts,
+    products: catalog.protections,
   },
 ];
 
@@ -106,33 +101,43 @@ export default function SystemBuilderAccordion({
             </button>
 
             {activeIndex === index && (
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {step.products.map((product, productIndex) => {
-                  const isLast = productIndex === step.products.length - 1;
-                  const isOdd = step.products.length % 2 !== 0;
+              <div className="flex flex-col items-center w-full">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 justify-center">
+                  {step.products.map((product, productIndex) => {
+                    const isLast = productIndex === step.products.length - 1;
+                    const isOdd = step.products.length % 2 !== 0;
 
-                  return (
-                    <div
-                      key={product.id}
-                      className={
-                        isOdd && isLast
-                          ? "sm:col-span-2 sm:justify-center col-span-1 sm:flex"
-                          : ""
-                      }
-                    >
-                      <ProductCard
-                        {...product}
+                    return (
+                      <div
                         key={product.id}
-                        selected={selected.some(
-                          (selectedProduct) =>
-                            selectedProduct.id === product.id,
-                        )}
-                        selectedProducts={selected}
-                        setSelectedProducts={setSelected}
-                      />
-                    </div>
-                  );
-                })}
+                        className={
+                          isOdd && isLast
+                            ? "sm:col-span-2 sm:justify-center col-span-1 sm:flex"
+                            : ""
+                        }
+                      >
+                        <ProductCard
+                          {...product}
+                          key={product.id}
+                          selected={selected.some(
+                            (selectedProduct) =>
+                              selectedProduct.id === product.id,
+                          )}
+                          selectedProducts={selected}
+                          setSelectedProducts={setSelected}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex w-full self-center">
+                  <button
+                    className="text-[#4E2FD2] self-center font-semibold text-lg border border-[#4E2FD2]"
+                    onClick={() => setActiveIndex(index + 1)}
+                  >
+                    Next: Choose your plan
+                  </button>
+                </div>
               </div>
             )}
           </div>

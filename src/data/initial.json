@@ -1,0 +1,64 @@
+{
+  "selectedCameras": [
+    {
+      "id": "cam_1",
+      "counts": [
+        {
+          "color": "White",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "cam_2",
+      "counts": [
+        {
+          "color": "White",
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "selectedPlans": [
+    {
+      "id": "plan_1",
+      "counts": [
+        {
+          "color": null,
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "selectedSensors": [
+    {
+      "id": "sensor_1",
+      "counts": [
+        {
+          "color": null,
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": "sensor_2",
+      "counts": [
+        {
+          "color": null,
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "selectedProtections": [
+    {
+      "id": "protect_1",
+      "counts": [
+        {
+          "color": null,
+          "quantity": 2
+        }
+      ]
+    }
+  ]
+}

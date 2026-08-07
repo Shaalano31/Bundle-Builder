@@ -48,7 +48,7 @@ export type ReviewPanelProp = BuilderSelections & {
 };
 
 export type ColorQuantity = {
-  color?: string;
+  color?: string | null;
   quantity: number;
 };
 

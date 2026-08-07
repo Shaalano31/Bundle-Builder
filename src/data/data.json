@@ -1,0 +1,125 @@
+{
+  "cameraProducts": [
+    {
+      "id": "cam_1",
+      "image": "src/assets/images/Wyze_Cam_V4.png",
+      "name": "Wyze Cam v4",
+      "description": "The clearest Wyze Cam ever made.",
+      "price": 35.98,
+      "link": "https://www.google.com",
+      "discount": 22,
+      "colors": [
+        {
+          "image": "src/assets/images/V4_colors/White.png",
+          "name": "White"
+        },
+        {
+          "image": "src/assets/images/V4_colors/Grey.png",
+          "name": "Grey"
+        },
+        {
+          "image": "src/assets/images/V4_colors/Black.png",
+          "name": "Black"
+        }
+      ]
+    },
+    {
+      "id": "cam_2",
+      "image": "src/assets/images/Wyze_Cam_V3.png",
+      "name": "Wyze Cam Pan v3",
+      "description": "360° pan and 180° tilt security camera.",
+      "price": 39.98,
+      "link": "https://www.google.com",
+      "discount": 12,
+      "colors": [
+        {
+          "image": "src/assets/images/V3_colors/White.png",
+          "name": "White"
+        },
+        {
+          "image": "src/assets/images/V3_colors/Black.png",
+          "name": "Black"
+        }
+      ]
+    },
+    {
+      "id": "cam_3",
+      "image": "src/assets/images/Wyze_Floodlight_V2.png",
+      "name": "Wyze Cam Floodlight v2",
+      "description": "2K floodlight camera with a 160° wide-angle view for your garage.",
+      "price": 89.98,
+      "link": "https://www.google.com",
+      "discount": 22,
+      "colors": [
+        {
+          "image": "src/assets/images/V2/White.png",
+          "name": "White"
+        },
+        {
+          "image": "src/assets/images/V2/Black.png",
+          "name": "Black"
+        }
+      ]
+    },
+    {
+      "id": "cam_4",
+      "image": "src/assets/images/Doorbell.png",
+      "name": "Wyze Duo Cam Doorbell",
+      "description": "Two cameras. Two views. Double the porch protection.",
+      "price": 69.98,
+      "link": "https://www.google.com",
+      "colors": []
+    },
+    {
+      "id": "cam_5",
+      "image": "src/assets/images/Pro.png",
+      "name": "Wyze Battery Cam Pro",
+      "description": "Protect anywhere. See everything in 2.5K HDR. No power outlet or electrician needed.",
+      "price": 89.98,
+      "link": "https://www.google.com",
+      "colors": [
+        {
+          "image": "src/assets/images/Pro/White.png",
+          "name": "White"
+        },
+        {
+          "image": "src/assets/images/Pro/Black.png",
+          "name": "Black"
+        }
+      ]
+    }
+  ],
+
+  "planProducts": [
+    {
+      "id": "plan_1",
+      "image": "src/assets/Wyze_Cam_V3.png",
+      "name": "SD Card",
+      "description": "Motion detection included",
+      "price": 79,
+      "link": "https://google.com"
+    }
+  ],
+
+  "sensorProducts": [
+    {
+      "id": "sens_1",
+      "image": "src/assets/Wyze_Cam_V3.png",
+      "name": "Indoor Camera",
+      "description": "Motion detection included",
+      "price": 79,
+      "link": "https://google.com"
+    }
+  ],
+
+  "protectionProducts": [
+    {
+      "id": "protect_1",
+      "image": "src/assets/Wyze_Cam_V3.png",
+      "name": "SD Card",
+      "description": "Motion detection included",
+      "price": 79,
+      "link": "https://google.com"
+    }
+  ]
+}

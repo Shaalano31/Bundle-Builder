@@ -92,19 +92,6 @@ export default function ProductCard({
                     })
                     .filter((product) => product.counts.length > 0),
                 );
-                // setCount((prev) => {
-                //   const next = [...prev];
-                //   next[selectedColorIndex] = Math.max(
-                //     0,
-                //     next[selectedColorIndex] - 1,
-                //   );
-                //   if (next.every((quantity) => quantity === 0)) {
-                //     setSelectedProducts((selected) =>
-                //       selected.filter((product) => product.id !== id),
-                //     );
-                //   }
-                //   return next;
-                // });
               }}
               disabled={quantity === 0}
               className={`w-5 h-5 flex items-center justify-center leading-5 font-bold
@@ -174,28 +161,6 @@ export default function ProductCard({
                     };
                   });
                 });
-                // setCount((prev) => {
-                //   const next = [...prev];
-                //   next[selectedColorIndex]++;
-                //   if (prev[selectedColorIndex] === 0) {
-                //     setSelectedProducts((selectedProducts) => {
-                //       if (
-                //         selectedProducts.some((product) => product.id === id)
-                //       ) {
-                //         return selectedProducts;
-                //       }
-
-                //       return [
-                //         ...selectedProducts,
-                //         {
-                //           id,
-                //           counts: [],
-                //         },
-                //       ];
-                //     });
-                //   }
-                //   return next;
-                // });
               }}
               className="w-5 h-5 rounded-lg bg-[#F0F4F7] text-[#525963] flex items-center justify-center text-xl font-bold"
             >

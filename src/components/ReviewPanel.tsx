@@ -1,10 +1,5 @@
 import TruckIcon from "../assets/icons/truck.icon";
-import {
-  cameraProducts,
-  planProducts,
-  protectionProducts,
-  sensorProducts,
-} from "../data/products";
+import { catalog } from "../data/product";
 import type {
   BuilderSelections,
   ProductResponseType,
@@ -57,15 +52,15 @@ export default function ReviewPanel({
   setSelectedProtections,
   saveSystem,
 }: ReviewPanelProp) {
-  const cameraTotals = calculateTotals(selectedCameras, cameraProducts);
+  const cameraTotals = calculateTotals(selectedCameras, catalog.cameras);
 
-  const planTotals = calculateTotals(selectedPlans, planProducts);
+  const planTotals = calculateTotals(selectedPlans, catalog.plans);
 
-  const sensorTotals = calculateTotals(selectedSensors, sensorProducts);
+  const sensorTotals = calculateTotals(selectedSensors, catalog.sensors);
 
   const protectionTotals = calculateTotals(
     selectedProtections,
-    protectionProducts,
+    catalog.protections,
   );
 
   const subtotal =
@@ -83,7 +78,7 @@ export default function ReviewPanel({
   const savings = subtotal - discountedTotal;
 
   return (
-    <div className="w-[430px] bg-[#EDF4FF] border rounded-xl overflow-hidden">
+    <div className="md:w-1/3 bg-[#EDF4FF] border rounded-xl overflow-hidden">
       {/* Header */}
 
       <div className="px-6 py-6 border-b">
@@ -104,7 +99,7 @@ export default function ReviewPanel({
       {selectedCameras.length > 0 && (
         <ReviewSection title="Cameras">
           {selectedCameras.flatMap((selected) => {
-            const product = cameraProducts.find((p) => p.id === selected.id);
+            const product = catalog.cameras.find((p) => p.id === selected.id);
 
             if (!product) return [];
 
@@ -125,7 +120,7 @@ export default function ReviewPanel({
       {selectedSensors.length > 0 && (
         <ReviewSection title="Sensors">
           {selectedSensors.flatMap((selected) => {
-            const product = sensorProducts.find((p) => p.id === selected.id);
+            const product = catalog.sensors.find((p) => p.id === selected.id);
 
             if (!product) return [];
 
@@ -146,7 +141,7 @@ export default function ReviewPanel({
       {selectedProtections.length > 0 && (
         <ReviewSection title="Accessories">
           {selectedProtections.flatMap((selected) => {
-            const product = protectionProducts.find(
+            const product = catalog.protections.find(
               (p) => p.id === selected.id,
             );
 
@@ -169,7 +164,7 @@ export default function ReviewPanel({
       {selectedPlans.length > 0 && (
         <ReviewSection title="Plan">
           {selectedPlans.flatMap((selected) => {
-            const product = planProducts.find((p) => p.id === selected.id);
+            const product = catalog.plans.find((p) => p.id === selected.id);
 
             if (!product) return [];
 
