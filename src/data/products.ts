@@ -2,7 +2,7 @@ import type { ProductResponseType } from "../utils/types";
 
 export const cameraProducts: ProductResponseType[] = [
   {
-    id: 1,
+    id: "cam_1",
     image: "src\\assets\\Wyze_Cam_V4.png",
     name: "Wyze Cam v4",
     description: "The clearest Wyze Cam ever made.",
@@ -25,7 +25,7 @@ export const cameraProducts: ProductResponseType[] = [
     ],
   },
   {
-    id: 2,
+    id: "cam_2",
     image: "src\\assets\\Wyze_Cam_V3.png",
     name: "Indoor Camera",
     description: "Motion detection included",
@@ -33,7 +33,7 @@ export const cameraProducts: ProductResponseType[] = [
     link: "google.com",
   },
   {
-    id: 3,
+    id: "cam_3",
     image: "src\\assets\\Wyze_Cam_V3.png",
     name: "Indoor Camera",
     description: "Motion detection included",
@@ -48,7 +48,7 @@ export const planProducts = [
 
 export const sensorProducts = [
   {
-    id: 1,
+    id: "sens_1",
     image: "src\\assets\\Wyze_Cam_V3.png",
     name: "Indoor Camera",
     description: "Motion detection included",

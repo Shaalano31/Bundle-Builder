@@ -12,6 +12,7 @@ import ProtectionIcon from "../assets/icons/protection.icon";
 import PlanIcon from "../assets/icons/plan.icon";
 import ArrowUpIcon from "../assets/icons/arrowup.icon";
 import ArrowDownIcon from "../assets/icons/arrowdown.icon";
+import type { BuilderSelections } from "../utils/types";
 
 const steps = [
   {
@@ -36,12 +37,17 @@ const steps = [
   },
 ];
 
-export default function SystemBuilderAccordion() {
+export default function SystemBuilderAccordion({
+  selectedCameras,
+  setSelectedCameras,
+  selectedPlans,
+  setSelectedPlans,
+  selectedSensors,
+  setSelectedSensors,
+  selectedProtections,
+  setSelectedProtections,
+}: BuilderSelections) {
   const [activeIndex, setActiveIndex] = useState(0); // Step 1 expanded by default
-  const [selectedCameras, setSelectedCameras] = useState<number[]>([]);
-  const [selectedPlans, setSelectedPlans] = useState<number[]>([]);
-  const [selectedSensors, setSelectedSensors] = useState<number[]>([]);
-  const [selectedProtections, setSelectedProtections] = useState<number[]>([]);
 
   const accordion = [
     {
@@ -117,7 +123,10 @@ export default function SystemBuilderAccordion() {
                       <ProductCard
                         {...product}
                         key={product.id}
-                        selected={selected.includes(product.id)}
+                        selected={selected.some(
+                          (selectedProduct) =>
+                            selectedProduct.id === product.id,
+                        )}
                         selectedProducts={selected}
                         setSelectedProducts={setSelected}
                       />

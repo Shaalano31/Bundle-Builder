@@ -1,26 +1,33 @@
-import "./App.css";
+import { useState } from "react";
+import ReviewPanel from "./components/ReviewPanel";
 import SystemBuilderAccordion from "./components/SystemBuilderAccordion";
+import type { BuilderSelections, SelectedProduct } from "./utils/types";
 
 function App() {
+  const [selectedCameras, setSelectedCameras] = useState<SelectedProduct[]>([]);
+  const [selectedPlans, setSelectedPlans] = useState<SelectedProduct[]>([]);
+  const [selectedSensors, setSelectedSensors] = useState<SelectedProduct[]>([]);
+  const [selectedProtections, setSelectedProtections] = useState<
+    SelectedProduct[]
+  >([]);
+
+  const builderSelections: BuilderSelections = {
+    selectedCameras,
+    setSelectedCameras,
+    selectedPlans,
+    setSelectedPlans,
+    selectedSensors,
+    setSelectedSensors,
+    selectedProtections,
+    setSelectedProtections,
+  };
+
   return (
-    <main className="app">
-      {/* <h1>Build Your Security System</h1> */}
-      <SystemBuilderAccordion />
+    <main className="app flex flex-row">
+      <SystemBuilderAccordion {...builderSelections} />
+      <ReviewPanel {...builderSelections} />
     </main>
   );
 }
 
 export default App;
-
-// export default function App() {
-//   return (
-//     <div className="flex flex-col min-h-screen items-start justify-start bg-yellow-900 text-white">
-//       <h1 className="text-4xl font-bold text-blue-400 hover:underline">
-//         React + Tailwind CSS is Woing! 🚀
-//       </h1>
-//       <h1 className="text-4xl font-bold text-blue-400 hover:underline">
-//         React + Tailwind CSS is Woing! 🚀
-//       </h1>
-//     </div>
-//   );
-// }

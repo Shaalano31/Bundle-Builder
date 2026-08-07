@@ -16,11 +16,11 @@ export default function ProductCard({
   setSelectedProducts,
 }: ProductCardProps) {
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
-
-  const [count, setCount] = useState(() =>
-    new Array(colors?.length ? colors.length : 1).fill(0),
-  );
-
+  const selectedProduct = selectedProducts.find((p) => p.id === id);
+  const currentColor = colors?.[selectedColorIndex]?.name;
+  const quantity =
+    selectedProduct?.counts.find((count) => count.color === currentColor)
+      ?.quantity ?? 0;
   return (
     <div
       className={`bg-white flex flex-row items-center gap-2 p-3 rounded-[10px] h-full
@@ -69,24 +69,47 @@ export default function ProductCard({
           <div className="flex flex-row items-center">
             <button
               onClick={() => {
-                setCount((prev) => {
-                  const next = [...prev];
-                  next[selectedColorIndex] = Math.max(
-                    0,
-                    next[selectedColorIndex] - 1,
-                  );
-                  if (next.reduce((sum, count) => sum + count, 0) === 0) {
-                    setSelectedProducts((selected) =>
-                      selected.filter((selectedId) => selectedId !== id),
-                    );
-                  }
-                  return next;
-                });
+                setSelectedProducts((prev) =>
+                  prev
+                    .map((product) => {
+                      if (product.id !== id) return product;
+
+                      const counts = product.counts
+                        .map((count) =>
+                          count.color === currentColor
+                            ? {
+                                ...count,
+                                quantity: Math.max(0, count.quantity - 1),
+                              }
+                            : count,
+                        )
+                        .filter((count) => count.quantity > 0);
+
+                      return {
+                        ...product,
+                        counts,
+                      };
+                    })
+                    .filter((product) => product.counts.length > 0),
+                );
+                // setCount((prev) => {
+                //   const next = [...prev];
+                //   next[selectedColorIndex] = Math.max(
+                //     0,
+                //     next[selectedColorIndex] - 1,
+                //   );
+                //   if (next.every((quantity) => quantity === 0)) {
+                //     setSelectedProducts((selected) =>
+                //       selected.filter((product) => product.id !== id),
+                //     );
+                //   }
+                //   return next;
+                // });
               }}
-              disabled={count[selectedColorIndex] === 0}
+              disabled={quantity === 0}
               className={`w-5 h-5 flex items-center justify-center leading-5 font-bold
                 ${
-                  count[selectedColorIndex] === 0
+                  quantity === 0
                     ? "text-[#CED6DE] border-[#E6EBF0] border-2"
                     : "text-[#525963] border-0 bg-[#F0F4F7]"
                 }`}
@@ -94,22 +117,85 @@ export default function ProductCard({
               −
             </button>
 
-            <p className="w-10 text-center text-lg font-semibold">
-              {count[selectedColorIndex]}
-            </p>
+            <p className="w-10 text-center text-lg font-semibold">{quantity}</p>
 
             <button
               onClick={() => {
-                setCount((prev) => {
-                  const next = [...prev];
-                  next[selectedColorIndex]++;
-                  if (prev[selectedColorIndex] === 0) {
-                    setSelectedProducts((prev) =>
-                      prev.includes(id) ? prev : [...prev, id],
-                    );
+                setSelectedProducts((prev) => {
+                  const existingProduct = prev.find(
+                    (product) => product.id === id,
+                  );
+
+                  if (!existingProduct) {
+                    return [
+                      ...prev,
+                      {
+                        id,
+                        counts: [
+                          {
+                            color: currentColor,
+                            quantity: 1,
+                          },
+                        ],
+                      },
+                    ];
                   }
-                  return next;
+
+                  return prev.map((product) => {
+                    if (product.id !== id) return product;
+
+                    const existingColor = product.counts.find(
+                      (count) => count.color === currentColor,
+                    );
+
+                    if (!existingColor) {
+                      return {
+                        ...product,
+                        counts: [
+                          ...product.counts,
+                          {
+                            color: currentColor,
+                            quantity: 1,
+                          },
+                        ],
+                      };
+                    }
+
+                    return {
+                      ...product,
+                      counts: product.counts.map((count) =>
+                        count.color === currentColor
+                          ? {
+                              ...count,
+                              quantity: count.quantity + 1,
+                            }
+                          : count,
+                      ),
+                    };
+                  });
                 });
+                // setCount((prev) => {
+                //   const next = [...prev];
+                //   next[selectedColorIndex]++;
+                //   if (prev[selectedColorIndex] === 0) {
+                //     setSelectedProducts((selectedProducts) => {
+                //       if (
+                //         selectedProducts.some((product) => product.id === id)
+                //       ) {
+                //         return selectedProducts;
+                //       }
+
+                //       return [
+                //         ...selectedProducts,
+                //         {
+                //           id,
+                //           counts: [],
+                //         },
+                //       ];
+                //     });
+                //   }
+                //   return next;
+                // });
               }}
               className="w-5 h-5 rounded-lg bg-[#F0F4F7] text-[#525963] flex items-center justify-center text-xl font-bold"
             >

@@ -6,7 +6,7 @@ export interface IconProps {
 }
 
 export type ProductResponseType = {
-  id: number;
+  id: string;
   image: string;
   name: string;
   description: string;
@@ -18,8 +18,8 @@ export type ProductResponseType = {
 
 export type ProductCardProps = ProductResponseType & {
   selected: boolean;
-  selectedProducts: number[];
-  setSelectedProducts: Dispatch<SetStateAction<number[]>>;
+  selectedProducts: SelectedProduct[];
+  setSelectedProducts: Dispatch<SetStateAction<SelectedProduct[]>>;
 };
 
 export type ColorCardProps = {
@@ -27,4 +27,28 @@ export type ColorCardProps = {
   name: string;
   selected?: boolean;
   onClick?: () => void;
+};
+
+export type BuilderSelections = {
+  selectedCameras: SelectedProduct[];
+  setSelectedCameras: Dispatch<SetStateAction<SelectedProduct[]>>;
+
+  selectedPlans: SelectedProduct[];
+  setSelectedPlans: Dispatch<SetStateAction<SelectedProduct[]>>;
+
+  selectedSensors: SelectedProduct[];
+  setSelectedSensors: Dispatch<SetStateAction<SelectedProduct[]>>;
+
+  selectedProtections: SelectedProduct[];
+  setSelectedProtections: Dispatch<SetStateAction<SelectedProduct[]>>;
+};
+
+export type ColorQuantity = {
+  color?: string;
+  quantity: number;
+};
+
+export type SelectedProduct = {
+  id: string;
+  counts: ColorQuantity[];
 };
