@@ -43,6 +43,10 @@ export type BuilderSelections = {
   setSelectedProtections: Dispatch<SetStateAction<SelectedProduct[]>>;
 };
 
+export type ReviewPanelProp = BuilderSelections & {
+  saveSystem: () => void;
+};
+
 export type ColorQuantity = {
   color?: string;
   quantity: number;

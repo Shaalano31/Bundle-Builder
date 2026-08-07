@@ -69,7 +69,7 @@ export default function SystemBuilderAccordion({
   ];
   console.log(selectedCameras.length);
   return (
-    <div className="md:w-2/3 border rounded-lg overflow-hidden bg-green-800">
+    <div className="md:w-2/3 border rounded-lg overflow-hidden">
       {steps.map((step, index) => {
         const { selected, setSelected } = accordion[index];
         return (

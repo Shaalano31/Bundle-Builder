@@ -8,6 +8,7 @@ import {
 import type {
   BuilderSelections,
   ProductResponseType,
+  ReviewPanelProp,
   SelectedProduct,
 } from "../utils/types";
 import ReviewPanelProduct from "./ReviewPanelProduct";
@@ -54,7 +55,8 @@ export default function ReviewPanel({
   setSelectedSensors,
   selectedProtections,
   setSelectedProtections,
-}: BuilderSelections) {
+  saveSystem,
+}: ReviewPanelProp) {
   const cameraTotals = calculateTotals(selectedCameras, cameraProducts);
 
   const planTotals = calculateTotals(selectedPlans, planProducts);
@@ -225,12 +227,15 @@ export default function ReviewPanel({
 
       {/* Checkout */}
 
-      <div className="p-6">
+      <div className="flex flex-col p-6 justify-center">
         <button className="w-full bg-[#4E2FD2] text-white rounded-xl py-4 font-semibold text-lg hover:bg-[#4327bc] transition">
           Checkout
         </button>
 
-        <button className="w-full mt-4 text-gray-500 underline">
+        <button
+          className="mt-4 text-gray-500 underline cursor-pointer hover:text-purple-600"
+          onClick={saveSystem}
+        >
           Save my system for later
         </button>
       </div>

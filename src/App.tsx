@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReviewPanel from "./components/ReviewPanel";
 import SystemBuilderAccordion from "./components/SystemBuilderAccordion";
 import type { BuilderSelections, SelectedProduct } from "./utils/types";
@@ -22,10 +22,47 @@ function App() {
     setSelectedProtections,
   };
 
+  const STORAGE_KEY = "security-system-builder";
+
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (!saved) return;
+
+    try {
+      const {
+        selectedCameras,
+        selectedPlans,
+        selectedSensors,
+        selectedProtections,
+      } = JSON.parse(saved);
+
+      setSelectedCameras(selectedCameras ?? []);
+      setSelectedPlans(selectedPlans ?? []);
+      setSelectedSensors(selectedSensors ?? []);
+      setSelectedProtections(selectedProtections ?? []);
+    } catch (error) {
+      console.error("Failed to load saved system:", error);
+      localStorage.removeItem(STORAGE_KEY);
+    }
+  }, []);
+
+  const saveSystem = () => {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        selectedCameras,
+        selectedPlans,
+        selectedSensors,
+        selectedProtections,
+      }),
+    );
+  };
+
   return (
     <main className="app flex md:flex-row flex-col gap-10 lg:p-16 p-4 w-full">
       <SystemBuilderAccordion {...builderSelections} />
-      <ReviewPanel {...builderSelections} />
+      <ReviewPanel {...builderSelections} saveSystem={saveSystem} />
     </main>
   );
 }
