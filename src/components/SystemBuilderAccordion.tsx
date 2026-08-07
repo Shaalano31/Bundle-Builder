@@ -69,7 +69,7 @@ export default function SystemBuilderAccordion({
   ];
   console.log(selectedCameras.length);
   return (
-    <div className="max-w-2xl mx-auto border rounded-lg overflow-hidden">
+    <div className="md:w-2/3 border rounded-lg overflow-hidden bg-green-800">
       {steps.map((step, index) => {
         const { selected, setSelected } = accordion[index];
         return (
@@ -116,7 +116,7 @@ export default function SystemBuilderAccordion({
                       key={product.id}
                       className={
                         isOdd && isLast
-                          ? "sm:col-span-2 flex justify-center"
+                          ? "sm:col-span-2 sm:justify-center col-span-1 sm:flex"
                           : ""
                       }
                     >

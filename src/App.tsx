@@ -23,7 +23,7 @@ function App() {
   };
 
   return (
-    <main className="app flex flex-row">
+    <main className="app flex md:flex-row flex-col gap-10 lg:p-16 p-4 w-full">
       <SystemBuilderAccordion {...builderSelections} />
       <ReviewPanel {...builderSelections} />
     </main>

@@ -43,6 +43,14 @@ export const cameraProducts: ProductResponseType[] = [
 ];
 
 export const planProducts = [
+  {
+    id: "protect_1",
+    image: "src\\assets\\Wyze_Cam_V3.png",
+    name: "SD Card",
+    description: "Motion detection included",
+    price: 79,
+    link: "google.com",
+  },
   // ...
 ];
 
@@ -58,5 +66,13 @@ export const sensorProducts = [
 ];
 
 export const protectionProducts = [
+  {
+    id: "protect_1",
+    image: "src\\assets\\Wyze_Cam_V3.png",
+    name: "SD Card",
+    description: "Motion detection included",
+    price: 79,
+    link: "google.com",
+  },
   // ...
 ];
